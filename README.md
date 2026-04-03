@@ -1,83 +1,60 @@
-# AI-Driven DevSecOps Test-Phase Optimization  
-### Token-Level Log Anomaly Detection with LogBERT, XAI, and LLMs
+# AI-Driven DevSecOps Test Optimization
+### Token-Level Log Anomaly Detection with LogBERT, XAI, RAG & LLMs
 
-This project focuses on **token-wise anomaly detection during the DevSecOps test phase**, covering CI/CD testing, security scans, build verification, and monitoring logs.
-
-The pipeline combines **LogBERT** for learning sequential log patterns, **SHAP (XAI)** for transparent token-level explanations, and **LLMs** for human-readable root-cause analysis of test-phase failures and security events.
-
-
-
-##  DevSecOps Test-Phase Focus
-
-The system analyzes logs generated during:
-- Unit and Integration Testing  
-- Functional and Regression Testing  
-- CI/CD Build and Test Execution  
-- Static & Dynamic Security Testing  
-- Vulnerability and Dependency Scanning  
-- Intrusion Detection and Monitoring  
-
-Anomalies are detected **at token level**, enabling precise identification of failed test steps, security violations, and pipeline breakdowns.
-
-
-
-##  LogBERT-Based Token-wise Detection
-
-LogBERT is trained to learn:
-- Sequential execution patterns in test-phase logs  
-- Contextual dependencies across heterogeneous log types  
-- Abnormal deviations indicating testing or security failures  
-
-The model uses transformer encoder layers with multi-head self-attention and is optimized using cross-entropy loss while ignoring padding tokens.
-
-### Training Performance Across Test-Phase Datasets
-
-![LogBERT Evaluation](Logbert_evaluation.png)
+This project enhances **DevSecOps test-phase analysis** by detecting anomalies at the **token level** in logs from CI/CD pipelines, security scans, and testing workflows.
 
 ---
 
-##  SHAP Token-Level Explainability
+##  Scope
 
-SHAP is applied to interpret LogBERT predictions at **token granularity**.
+Analyzes logs from:  
+- Unit, Integration, Functional & Regression Testing  
+- CI/CD Build and Deployment  
+- Static & Dynamic Security Testing (SAST & DAST)  
+- Vulnerability & Dependency Scanning  
+- Monitoring & Intrusion Detection  
 
-- 🔴 **Red tokens** → drive anomaly detection (e.g., *failed*, *unauthorized*, *blocked*)  
-- 🔵 **Blue tokens** → reinforce normal behavior  
-- Sequence-level scores summarize overall risk  
+---
 
-### SHAP Heatmap for Test-Phase Logs
+##  Approach
 
-![SHAP Heatmap](Shap_headmap.png)
+### LogBERT for Token-Level Detection
+![LogBERT Evaluation](Logbert_evaluation.png)
+- Captures sequential & contextual patterns in logs  
+- Flags abnormal tokens indicating test failures or security issues  
+- Transformer-based encoder with multi-head self-attention  
 
+### SHAP + LLM Explainability
+![SHAP](SHAP_image.png)
+-  Red tokens → anomaly drivers (*failed*, *blocked*)  
+-  Blue tokens → normal behavior reinforcement  
+- LLM converts SHAP outputs into **human-readable explanations**  
 
+### RAG + LLM Contextual Analysis
+![RAG + LLM](SHAP,RAG,LLM.png)
+- Retrieves top-K similar historical logs  
+- Synthesizes context-aware explanations  
+- LLM provides **root-cause analysis and remediation guidance**  
 
-##  LLM-Based Test-Phase Explanation
+---
 
-LLMs transform SHAP-attributed tokens into **concise, test-phase–aware explanations**, identifying whether anomalies originate from:
-- Failed test cases  
-- Security scans and access violations  
-- CI/CD build or deployment errors  
+##  Components
 
-### LLM Token-Level Explanation Example
+- `model_final.pt` – Pretrained LogBERT  
+- `labelmap.json` – Token-ID mapping  
+- `config.json` – Model configuration  
+- `tokenizer/` – Preprocessing utilities  
+- XAI + LLM & RAG + LLM modules  
 
-![LLM Sample Output](LLM_sample%20output.png)
-
-
-
-## Key Components
-
-- `model_final.pt` – Trained LogBERT model  
-- `labelmap.json` – Token-to-ID mapping  
-- `config.json` – Architecture & hyperparameters  
-- `tokenizer/` – Log preprocessing utilities  
-- XAI and LLM explanation modules  
-
-
+---
 
 ##  DevSecOps Value
 
-- Precise **token-wise anomaly detection**  
-- Clear explanations for **test failures and security issues**  
-- Faster **root-cause analysis** in CI/CD pipelines  
-- Improved reliability, security, and transparency  
+- Fine-grained **token-level anomaly detection**  
+- Transparent, **human-readable explanations**  
+- Rapid **root-cause analysis** for CI/CD pipelines  
+- Enhanced **pipeline reliability, security, and traceability**  
 
+---
 
+> ⚡ This pipeline integrates **deep learning, explainable AI, and retrieval-augmented reasoning** to deliver actionable insights for DevSecOps teams.

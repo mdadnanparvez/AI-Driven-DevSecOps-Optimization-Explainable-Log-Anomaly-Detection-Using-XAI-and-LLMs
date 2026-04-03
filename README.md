@@ -57,4 +57,4 @@ Analyzes logs from:
 
 ---
 
-> ⚡ This pipeline integrates **deep learning, explainable AI, and retrieval-augmented reasoning** to deliver actionable insights for DevSecOps teams.
+> This pipeline integrates **deep learning, explainable AI, and retrieval-augmented reasoning** to deliver actionable insights for DevSecOps teams.
